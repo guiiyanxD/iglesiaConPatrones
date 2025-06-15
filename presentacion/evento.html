@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Evento</title>
+    <style>
+        .color1 {color: #e317a4;}
+        .color2 {color: #e63381;}
+        .color3 {color: #f18071;}
+        .color4 {color: #efa865;}
+        .color5 {color: #ecc15d;}
+
+        .color6 {color: #39537e;}
+        .color7 {color: #145f82;}
+        .color8 {color: #157991;}
+        .color9 {color: #17a3a1;}
+        .color10 {color: #20dab1;}
+        h1 {
+            color: #fff;
+            text-align: center;
+            font-weight: bold; /* Negrita */
+            font-style: italic; /* Estilo de texto */
+            margin: 20px 0; /* Margen superior e inferior de 20px, sin margen a los lados */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #39537e; /* Fondo morado */
+        }
+        section {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #145f82; /* Fondo blanco para contenido */
+            border-radius: 10px;
+        }
+        h1, h2, h4 {
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .card {
+            flex-basis: 48%;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #000;
+            background-color: #157991;
+            margin: 0 auto; /* Centrar las tarjetas */
+        }
+        .card + .card {
+            margin-top: 20px; /* Espacio entre las tarjetas */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto; /* Centrar las tablas */
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #17a3a1;
+        }
+        th {
+            background-color: #20dab1;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="submit"], button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #17a3a1;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+    <style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f4f8;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1, h2, h3, h4 {
+        text-align: center;
+        color: #0d3b66;
+    }
+
+    section {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+    }
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .card {
+        background-color: #e6eef7;
+        border: 1px solid #d1e3f0;
+        border-radius: 10px;
+        padding: 20px;
+        width: 100%;
+        max-width: 480px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    label {
+        display: block;
+        margin-top: 12px;
+        color: #333;
+        font-weight: 500;
+    }
+
+    input[type="text"],
+    input[type="datetime-local"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        margin-top: 5px;
+        box-sizing: border-box;
+        font-size: 1rem;
+    }
+
+    textarea {
+        resize: vertical;
+    }
+
+    button,
+    input[type="submit"] {
+        background-color: #0d6efd;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 15px;
+    }
+
+    button:hover,
+    input[type="submit"]:hover {
+        background-color: #0b5ed7;
+    }
+
+    .checkbox-group {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+        margin-right: 8px;
+    }
+
+    .side-form {
+        margin-top: 15px;
+    }
+
+    .submit-button {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-size: 0.95rem;
+    }
+
+    th, td {
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+
+    th {
+        background-color: #d6eaff;
+        color: #0d3b66;
+        text-align: left;
+    }
+
+    td {
+        background-color: #ffffff;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card {
+            width: 90%;
+        }
+    }
+</style>
+
+</head>
+<body>
+    <section>
+        
+        <h1> GESTIONAR EVENTOS </h1>
+        <div class="container">
+         
+           
+                 <!--<?php var_dump($PobtenerEvento); ?>-->
+            <?php if ($PobtenerEvento !== null): ?>
+            <div class="card">
+                <h4>Evento Disponible: <?php echo $PobtenerEvento['nombre']; ?></h4>
+                <p>Fecha y hora: <?php echo $PobtenerEvento['fecha']; ?></p>
+                <p>Estado: <?php echo $PobtenerEvento['estado']; ?></p>
+                <p>Ubicacion: <?php echo $PobtenerEvento['ubicacion']; ?></p>
+                <p>Descripcion: <?php echo $PobtenerEvento['descripcion']; ?></p>
+                <form method="POST" action="evento.php">
+                    <input type="hidden" name="accion" value="cerrarEvento">
+                    <input type="hidden" name="id_evento" value="<?php echo $PobtenerEvento['id']; ?>">
+                    <button type="submit">Cerrar evento</button>
+                </form>
+            </div>
+                <div class="card">
+                    <h2>Editar informacion  del Evento</h2>
+                    <form method="POST" action="evento.php">
+                        <input type="hidden" name="accion" value="editarEvento">
+                        <input type="hidden" name="id_evento" value="<?php echo $PobtenerEvento['id']; ?>">
+                        <label for="nombre">Nombre:</label><br>
+                        <input type="text" id="nombre" name="nombre" placeholder="<?php echo $PobtenerEvento['nombre']; ?>"><br>
+                        <label for="fecha">Fecha y hora:</label><br>
+                        <input type="datetime-local" id="fecha" name="fecha" placeholder="<?php echo $PobtenerEvento['fecha']; ?>"><br>
+                        <label for="ubicacion">Ubicación:</label><br>
+                        <input type="text" id="ubicacion" name="ubicacion" placeholder="<?php echo $PobtenerEvento['ubicacion']; ?>"><br>
+                       
+                        <div class="side-form">
+                           
+                            <p><?php echo $PobtenerEvento['descripcion']; ?></p>
+                        </div>
+                        <button type="submit">Actualizar evento</button>
+                    </form>
+                </div>
+            <?php else: ?>
+               <!-- FORMULARIO DE REGISTRO -->
+               <div class="card">
+                <form method="POST" action="evento.php">
+                    <input type="hidden" name="accion" value="registrarEvento">
+                    <div class="form-group">
+                        <h2>Registro de Evento</h2>
+                        <label for="nombre">Nombre:</label><br>
+                        <input type="text" id="nombre" name="nombre"><br>
+                        <label for="fecha">Fecha y hora:</label><br>
+                        <input type="datetime-local" id="fecha" name="fecha"><br>
+                        <label for="ubicacion">Ubicación:</label><br>
+                        <input type="text" id="ubicacion" name="ubicacion"><br>
+                       <!--  <label for="descripcion">Descripción:</label><br>
+                        <input type="text" id="descripcion" name="descripcion"><br> -->
+                    </div>
+                    <div class="side-form">
+                        <h3>Elige los tipos de escenarios</h3>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="opcion1" name="descripcion[]" value="Decoracion">
+                            <label for="opcion1">Entretenimiento <?php echo $costoDecoracion; ?></label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="opcion2" name="descripcion[]" value="Tecnologia">
+                            <label for="opcion2">Escenografía <?php echo $costoTecnologia; ?></label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="opcion3" name="descripcion[]" value="Textiles">
+                            <label for="opcion3">Iluminación <?php echo $costoTextiles; ?></label>
+                        </div>
+                        <textarea id="descripcionOpciones" name="descripcionOpciones" rows="4" placeholder="Descripción de opciones seleccionadas..."></textarea>
+                    </div>
+                    <div class="submit-button">
+                        <input type="submit" value="Registrar">
+                    </div>
+                </form>
+            </div>
+            <?php endif; ?>
+            <!-- LISTA DE EVENTOS -->
+            <div class="card">
+                <h2>Lista de eventos</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Fecha</th>
+                            <th>Ubicacion</th>
+                            <th>Descripcion</th>
+                            <th>Estado</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (is_object($PlistarEventos)): ?>
+                            <?php while ($evento = $PlistarEventos->fetch(PDO::FETCH_ASSOC)): ?>
+                                <tr>
+                                    <td><?php echo $evento['nombres']; ?></td>
+                                    <td><?php echo $evento['fecha_inicio']; ?></td>
+                                    <td><?php echo $evento['ubicacion']; ?></td>
+                                    <td><?php echo $evento['descripcion']; ?></td>
+                                    <td><?php echo $evento['estado']; ?></td>
+                                    <td>
+                                        <form method="POST" action="evento.php">
+                                            <input type="hidden" name="accion" value="eliminarEvento">
+                                            <input type="hidden" name="id_evento" value="<?php echo $evento['id']; ?>">
+                                            <input type="submit" value="Eliminar">
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php endwhile; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="6">No hay eventos disponibles</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+    </section>
+</body>
+</html>
+
+<script>
+    document.querySelectorAll('input[name="descripcion[]"]').forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            const textarea = document.getElementById('descripcionOpciones');
+            const selectedOptions = Array.from(document.querySelectorAll('input[name="descripcion[]"]:checked'))
+                .map(function(checkbox) {
+                    return checkbox.value;
+                });
+            textarea.value = selectedOptions.join(', ');
+        });
+    });
+</script>
