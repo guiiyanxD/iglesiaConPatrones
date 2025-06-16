@@ -24,7 +24,7 @@ class Conexion {
 
             if ($estrategia === null) {
 
-                $estrategia = new PostgreSQLStrategy(); // Estrategia por defecto
+                $estrategia = new MySQLStrategy(); // Estrategia por defecto
 
             }
 

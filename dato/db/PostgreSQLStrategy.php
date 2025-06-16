@@ -25,7 +25,7 @@ class PostgreSQLStrategy implements IDatabaseStrategy
         try {
             $this->connection = new \PDO($dsn, self::USER, self::PASS);
             $this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            echo "Conexión establecida con PostgreSQL.\n";
+            $_SESSION['psql'] = "Conectado a PSQL"; // Store connection in session
             return $this->connection;
         } catch (\PDOException $e) {
             throw new \PDOException("Connection failed: " . $e->getMessage());
@@ -47,6 +47,7 @@ class PostgreSQLStrategy implements IDatabaseStrategy
                 } else {
                     $statement->execute($params);
                 }
+                $_SESSION['statement'] = $statement; // Guardar la última consulta en la sesión
                 return $statement;
             } catch (\PDOException $e) {
                 throw new \PDOException("Query execution failed: " . $e->getMessage());

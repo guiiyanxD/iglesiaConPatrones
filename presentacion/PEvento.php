@@ -27,6 +27,7 @@ class PEvento
 
     public function verPagina()
     {
+        $conexiones = $_SESSION['mysql'] || $_SESSION['psql'] ?? null;
         $PobtenerEvento = $this->evento->obtenerEventoDisponible();
         $PlistarEventos = $this->evento->listar();
         $costoDecoracion = $this->decoracion->getCostoDecoracion();

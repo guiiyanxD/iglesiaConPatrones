@@ -310,7 +310,7 @@
                         <?php if (is_object($PlistarEventos)): ?>
                             <?php while ($evento = $PlistarEventos->fetch(PDO::FETCH_ASSOC)): ?>
                                 <tr>
-                                    <td><?php echo $evento['nombres']; ?></td>
+                                    <td><?php  $evento['nombres']; ?></td>
                                     <td><?php echo $evento['fecha_inicio']; ?></td>
                                     <td><?php echo $evento['ubicacion']; ?></td>
                                     <td><?php echo $evento['descripcion']; ?></td>

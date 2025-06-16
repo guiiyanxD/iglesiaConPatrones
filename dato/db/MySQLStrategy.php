@@ -18,7 +18,7 @@ class MySQLStrategy implements IDatabaseStrategy
         try {
             $this->connection = new \PDO($dsn, 'root', '');
             $this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            echo "Conexión establecida con MySQL.\n";
+            $_SESSION['mysql'] = "Conectado a MYSQL"; // Store connection in session
             return $this->connection;
         } catch (\PDOException $e) {
             throw new \PDOException("Connection failed: " . $e->getMessage());
